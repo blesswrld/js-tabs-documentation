@@ -1,53 +1,52 @@
-
 # JavaScript Tabs Module 🗂️
 
-**JavaScript Tabs Module** предоставляет компонент для создания вкладок на веб-странице. Этот модуль позволяет легко управлять содержимым вкладок, скрывая и показывая соответствующие элементы при переключении между ними.
+**JavaScript Tabs Module** provides a component for creating tabs on a web page. This module allows you to easily manage the content of tabs by hiding and showing the corresponding elements when switching between them.
 
 ---
 
-## Основные особенности
+## Key Features
 
-1. **Переключение между вкладками**: Легко переключайте вкладки с использованием простых кликов.
-2. **Анимация содержимого вкладок**: Плавное добавление и удаление контента вкладки с использованием CSS классов.
-3. **Настройка активной вкладки**: Возможность указать класс для активной вкладки для выделения её визуально.
-4. **Обработка кликов**: Обработчик кликов на родительский элемент вкладок для переключения активных вкладок.
-
----
-
-## Установка
-
-1. Клонируйте репозиторий:
-   ```bash
-   git clone https://github.com/yourusername/js-tabs-module.git
-   ```
-
-2. Или просто скачайте файл `tabs.js` и включите его в ваш проект.
+1. **Tab Switching**: Easily switch tabs using simple clicks.
+2. **Tab Content Animation**: Smoothly add and remove tab content using CSS classes.
+3. **Active Tab Setting**: Ability to specify a class for the active tab to highlight it visually.
+4. **Click Handling**: Handler for clicks on the parent element of the tabs to switch active tabs.
 
 ---
 
-## Быстрый старт
+## Installation
 
-### Пример HTML-разметки
-
-Убедитесь, что ваш HTML код для вкладок имеет такую структуру:
-
-```html
-<!-- Родительский элемент вкладок -->
-<div class="tabheader__items">
-    <div class="tabheader__item">Вкладка 1</div>
-    <div class="tabheader__item">Вкладка 2</div>
-    <div class="tabheader__item">Вкладка 3</div>
-</div>
-
-<!-- Контент вкладок -->
-<div class="tabcontent">Контент для вкладки 1</div>
-<div class="tabcontent">Контент для вкладки 2</div>
-<div class="tabcontent">Контент для вкладки 3</div>
+1. Clone the repository:
+```bash
+git clone https://github.com/yourusername/js-tabs-module.git
 ```
 
-### Инициализация JavaScript
+2. Or just download the `tabs.js` file and include it in your project.
 
-Инициализируйте вкладки, импортировав модуль `tabs.js` и передав необходимые селекторы и активный класс:
+---
+
+## Quick Start
+
+### Sample HTML Markup
+
+Make sure your HTML for the tabs has the following structure:
+
+```html
+<!-- Tabs Parent Element -->
+<div class="tabheader__items">
+<div class="tabheader__item">Tab 1</div>
+<div class="tabheader__item">Tab 2</div>
+<div class="tabheader__item">Tab 3</div>
+</div>
+
+<!-- Tab Content -->
+<div class="tabcontent">Content for Tab 1</div>
+<div class="tabcontent">Content for Tab 2</div>
+<div class="tabcontent">Content for Tab 3</div>
+```
+
+### Initializing JavaScript
+
+Initialize the tabs by importing the `tabs.js` module and passing in the necessary selectors and active class:
 
 ```javascript
 import tabs from './modules/tabs.js';
@@ -57,52 +56,52 @@ tabs('.tabheader__item', '.tabcontent', '.tabheader__items', 'tabheader__item_ac
 
 ---
 
-## Пример использования
+## Usage example
 
-Вот как работает модуль вкладок:
+Here's how the tabs module works:
 
-- **Переключение между вкладками**: Модуль позволяет пользователям переключаться между вкладками, скрывая/показывая соответствующие элементы.
-- **Настройка активной вкладки**: Укажите класс для активной вкладки, чтобы выделить её на странице.
-- **Плавное отображение содержимого**: Вкладки плавно отображаются и скрываются с помощью CSS анимации.
+- **Toggle between tabs**: The module allows users to switch between tabs by hiding/showing the corresponding elements.
+- **Set active tab**: Specify a class for the active tab to highlight it on the page.
+- **Fade content**: Tabs are smoothly shown and hidden using CSS animations.
 
 ```javascript
-// Основная функция для переключения вкладок
+// Main function for switching tabs
 function tabs(tabsSelector, tabsContentSelector, tabsParentSelector, activeClass) {
-    let tabs = document.querySelectorAll(tabsSelector),
-        tabsContent = document.querySelectorAll(tabsContentSelector),
-        tabsParent = document.querySelector(tabsParentSelector);
+ let tabs = document.querySelectorAll(tabsSelector),
+ tabsContent = document.querySelectorAll(tabsContentSelector),
+ tabsParent = document.querySelector(tabsParentSelector);
 
-    function hideTabContent() {
-        tabsContent.forEach(item => {
-            item.classList.add('hide');
-            item.classList.remove('show', 'fade');
-        });
+ function hideTabContent() {
+ tabsContent.forEach(item => {
+ item.classList.add('hide');
+ item.classList.remove('show', 'fade');
+ });
 
-        tabs.forEach(item => {
-            item.classList.remove(activeClass);
-        });
-    }
+ tabs.forEach(item => {
+ item.classList.remove(activeClass);
+ });
+ }
 
-    function showTabContent(i = 0) {
-        tabsContent[i].classList.add('show', 'fade');
-        tabsContent[i].classList.remove('hide');
-        tabs[i].classList.add(activeClass);
-    }
+ function showTabContent(i = 0) {
+ tabsContent[i].classList.add('show', 'fade');
+ tabsContent[i].classList.remove('hide');
+ tabs[i].classList.add(activeClass);
+ }
 
-    hideTabContent();
-    showTabContent();
+ hideTabContent();
+ showTabContent();
 
-    tabsParent.addEventListener('click', function(event) {
-        const target = event.target;
-        if (target && target.classList.contains(tabsSelector.slice(1))) {
-            tabs.forEach((item, i) => {
-                if (target == item) {
-                    hideTabContent();
-                    showTabContent(i);
-                }
-            });
-        }
-    });
+ tabsParent.addEventListener('click', function(event) {
+ const target = event.target;
+ if (target && target.classList.contains(tabsSelector.slice(1))) {
+ tabs.forEach((item, i) => {
+ if (target == item) {
+ hideTabContent();
+ showTabContent(i);
+ }
+ });
+ }
+ });
 }
 
 export default tabs;
@@ -110,16 +109,16 @@ export default tabs;
 
 ---
 
-## Поддерживаемые особенности
+## Supported Features
 
-Модуль вкладок поддерживает:
+The Tabs module supports:
 
-- **Плавное скрытие и отображение контента**: Вкладки плавно появляются и исчезают с использованием классов `show` и `hide`.
-- **Установка активной вкладки**: Вкладка, которая активна, получает дополнительный класс для выделения.
-- **Обработка кликов на вкладках**: Каждый клик по вкладке активирует соответствующее содержимое и скрывает другие.
+- **Fade in and out of content**: Tabs fade in and out using the `show` and `hide` classes.
+- **Set active tab**: The tab that is active gets an additional class for highlighting.
+- **Handle clicks on tabs**: Each click on a tab activates the corresponding content and hides the others.
 
 ---
 
-## Лицензия
+## License
 
-Этот проект лицензируется под **MIT License** — вы можете использовать, изменять и распространять его.
+This project is licensed under the **MIT License** - you can use, modify and distribute it.
