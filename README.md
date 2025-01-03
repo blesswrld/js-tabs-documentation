@@ -17,7 +17,7 @@
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/yourusername/js-tabs-module.git
+git clone https://github.com/blesswrld/js-tabs-documentation.git
 ```
 
 2. Or just download the `tabs.js` file and include it in your project.
